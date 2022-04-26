@@ -1,30 +1,44 @@
-   
+from bd import *
+
+def Users():
+    list = ['Gabriel', 'Emerson', 'Vitor']
+    return list
+
+
+# Criar login
+def SignIn():
+    user = input("Usuário: ")
+    if user != "" and user.title() in Users():
+        password = input("Password: ")
+        if password != "":
+            validation(user, password)
+            print("ok")
+    else:
+        print("Erro")
+
 # Criar Cadastro
 def SignUp():
-    new_user = input('New User: ')
+    new_user = input('New User: ').title()
     if new_user != "" and len(new_user) >= 6:
         password = input("Password: ")
         if password != "" and len(password) >= 5:
             pw_repeat = input("Repeat Password: ")
             if password == pw_repeat:
-                print('Adicionar user ao banco')
+                insert(new_user, password)
+                interface()
             else:
                 print("Usuario ou senha incorretos")
         else:
             print("Usuario ou senha incorretos")
     else:
-        print("Usuario inválido (Mais que 6 caracteres")
-
-# Criar login
-
-# Criar Consulta
+        print("Usuario inválido (Mais que 6 caracteres)")
 
 # Criar sistema de escolha
 def choice(c):
     if c == 1:
         SignUp()
     elif c == 2:
-        print('Sign In')
+        SignIn()
     elif c == 3:
         print('About')
     elif c == 0:
